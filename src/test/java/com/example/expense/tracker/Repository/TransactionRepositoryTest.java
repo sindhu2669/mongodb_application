@@ -1,6 +1,7 @@
 package com.example.expense.tracker.Repository;
 
 import com.example.expense.tracker.model.Transaction;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
@@ -14,6 +15,12 @@ class TransactionRepositoryTest {
 
     @Autowired
     private TransactionRepository transactionRepository;
+
+    @BeforeEach
+    void setUp() {
+        // Clear the database before each test method
+        transactionRepository.deleteAll();
+    }
 
     @Test
     void testSaveTransaction() {
@@ -31,7 +38,7 @@ class TransactionRepositoryTest {
         List<Transaction> transactions = transactionRepository.findAll();
 
         // Verify that the transaction is saved and fetched correctly
-        assertEquals(1, transactions.size()); // <-- This assertion should pass if the transaction is saved correctly
+        assertEquals(1, transactions.size());
         assertEquals("Test Transaction", transactions.get(0).getDescription());
         assertEquals(100.0, transactions.get(0).getAmount());
         assertEquals("Test Category", transactions.get(0).getCategory());
