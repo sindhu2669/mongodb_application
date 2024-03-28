@@ -1,7 +1,7 @@
 package com.example.expense.tracker.controller;
 
-import com.example.expense.tracker.model.User;
 import com.example.expense.tracker.Repository.UserRepository;
+import com.example.expense.tracker.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,8 +16,12 @@ import javax.validation.Valid;
 @Controller
 public class MessageController {
 
+    private final UserRepository userRepository;
+
     @Autowired
-    private UserRepository userRepository;
+    public MessageController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @GetMapping("/home")
     public String showHomePage(Model model) {
@@ -26,9 +30,7 @@ public class MessageController {
     }
 
     @PostMapping("/home")
-    public String handleSignUp(@Valid @ModelAttribute("user") User user,
-                               BindingResult bindingResult,
-                               RedirectAttributes redirectAttributes) {
+    public String handleSignUp(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             // If validation errors exist, return to the signup page
             return "signup";
@@ -48,5 +50,8 @@ public class MessageController {
             redirectAttributes.addFlashAttribute("errorMessage", "An error occurred during sign up. Please try again.");
             return "redirect:/home";
         }
+    }
+
+    public void handleSignUp(User user) {
     }
 }
