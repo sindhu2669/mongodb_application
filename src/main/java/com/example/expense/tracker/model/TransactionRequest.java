@@ -1,25 +1,28 @@
 package com.example.expense.tracker.model;
 
+import lombok.Getter;
+
+@Getter
 public class TransactionRequest {
     private String description;
     private double amount;
     private String category;
     private String type;
 
-    public String getDescription() {
-        return description;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public double getAmount() {
-        return amount;
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
 
-    public String getCategory() {
-        return category;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-    public String getType() {
-        return type;
+    public void setType(String type) {
+        this.type = type;
     }
 
     // Constructors, getters, and setters

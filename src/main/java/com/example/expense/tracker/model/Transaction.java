@@ -9,27 +9,70 @@ public class Transaction {
     private String id;
     private double amount;
     private String category;
-
     private String description;
-    // Other fields and methods
+    private String type;
 
-    public void setDescription(String description) {
+    // Constructors
+    public Transaction() {
+    }
+
+    public Transaction(double amount, String category, String description, String type) {
+        this.amount = amount;
+        this.category = category;
         this.description = description;
+        this.type = type;
+    }
+
+    // Getters and Setters
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public double getAmount() {
         return amount;
     }
 
-    public void setAmount(Object amount) {
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
 
-    public void setCategory(Object category) {
+    public String getCategory() {
+        return category;
     }
 
-    public void setType(Object type) {
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-    // Constructors, getters, and setters
-    // You can generate constructors, getters, and setters using your IDE or lombok.
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    // toString method (optional)
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "id='" + id + '\'' +
+                ", amount=" + amount +
+                ", category='" + category + '\'' +
+                ", description='" + description + '\'' +
+                ", type='" + type + '\'' +
+                '}';
+    }
 }

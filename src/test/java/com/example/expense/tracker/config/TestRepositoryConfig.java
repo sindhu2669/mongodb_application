@@ -7,10 +7,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories(basePackages = {"com.example.expense.tracker.repository"})
 public class TestRepositoryConfig {
 
-    // Define any beans or configurations needed for testing
-
-    // Example bean definition for configuring EntityManagerFactory or DataSource
-    // Uncomment and customize as needed
 
 //    @Bean
 //    public EntityManagerFactory entityManagerFactory() {

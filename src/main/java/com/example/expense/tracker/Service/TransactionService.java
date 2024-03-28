@@ -32,16 +32,22 @@ public class TransactionService {
     }
 
     public Transaction updateTransaction(String id, TransactionRequest transactionRequest) {
-        Transaction existingTransaction = transactionRepository.findById(id).orElse(null);
-        if (existingTransaction != null) {
-            existingTransaction.setDescription(transactionRequest.getDescription());
-            existingTransaction.setAmount(transactionRequest.getAmount());
-            existingTransaction.setCategory(transactionRequest.getCategory());
-            existingTransaction.setType(transactionRequest.getType());
-            return transactionRepository.save(existingTransaction);
+        // Check if the transaction exists
+        if (!transactionRepository.existsById(id)) {
+            // If transaction doesn't exist, return null
+            return null;
         }
-        return null;
+
+        // If transaction exists, update its properties and save
+        Transaction existingTransaction = transactionRepository.findById(id).orElse(null);
+        existingTransaction.setDescription(transactionRequest.getDescription());
+        existingTransaction.setAmount(transactionRequest.getAmount());
+        existingTransaction.setCategory(transactionRequest.getCategory());
+        existingTransaction.setType(transactionRequest.getType());
+        return transactionRepository.save(existingTransaction);
     }
+
+
 
     public boolean deleteTransaction(String id) {
         if (transactionRepository.existsById(id)) {

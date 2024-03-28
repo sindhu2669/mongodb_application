@@ -1,4 +1,4 @@
-package com.example.expense.tracker.Repository; // Note the lowercase 'r' in 'repository'
+package com.example.expense.tracker.Repository;
 
 import com.example.expense.tracker.model.Transaction;
 import org.springframework.data.mongodb.repository.MongoRepository;

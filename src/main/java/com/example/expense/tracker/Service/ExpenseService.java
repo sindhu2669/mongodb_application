@@ -70,18 +70,6 @@ public class ExpenseService {
         return null; // Placeholder implementation
     }
 
-    public GraphicalReport generateLastMonthReport() {
-        // Example: Generate graphical report for last month's expenses
-        // Implementation depends on your business logic
-        return null; // Placeholder implementation
-    }
-
-    public GraphicalReport generateLastYearReport() {
-        // Example: Generate graphical report for last year's expenses
-        // Implementation depends on your business logic
-        return null; // Placeholder implementation
-    }
-
     public List<TransactionHistory> getTransactionHistory() {
         // Example: Retrieve transaction history from database
         // Implementation depends on your business logic
