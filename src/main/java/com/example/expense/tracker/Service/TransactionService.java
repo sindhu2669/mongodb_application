@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class TransactionService {
@@ -19,7 +20,7 @@ public class TransactionService {
     }
 
     public Transaction getTransactionById(String id) {
-        return transactionRepository.findById(id).orElse(null);
+        return transactionRepository.findById(UUID.fromString(id)).orElse(null);
     }
 
     public Transaction createTransaction(TransactionRequest transactionRequest) {
@@ -33,13 +34,13 @@ public class TransactionService {
 
     public Transaction updateTransaction(String id, TransactionRequest transactionRequest) {
         // Check if the transaction exists
-        if (!transactionRepository.existsById(id)) {
+        if (!transactionRepository.existsById(UUID.fromString(id))) {
             // If transaction doesn't exist, return null
             return null;
         }
 
         // If transaction exists, update its properties and save
-        Transaction existingTransaction = transactionRepository.findById(id).orElse(null);
+        Transaction existingTransaction = transactionRepository.findById(UUID.fromString(id)).orElse(null);
         existingTransaction.setDescription(transactionRequest.getDescription());
         existingTransaction.setAmount(transactionRequest.getAmount());
         existingTransaction.setCategory(transactionRequest.getCategory());
@@ -47,11 +48,9 @@ public class TransactionService {
         return transactionRepository.save(existingTransaction);
     }
 
-
-
     public boolean deleteTransaction(String id) {
-        if (transactionRepository.existsById(id)) {
-            transactionRepository.deleteById(id);
+        if (transactionRepository.existsById(UUID.fromString(id))) {
+            transactionRepository.deleteById(UUID.fromString(id));
             return true;
         }
         return false;

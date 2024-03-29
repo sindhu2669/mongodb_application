@@ -2,12 +2,13 @@ package com.example.expense.tracker;
 
 import com.example.expense.tracker.model.Transaction;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.boot.web.server.LocalServerPort;
+
+import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -19,13 +20,8 @@ public class TransactionIntegrationTest {
     @LocalServerPort
     private int port;
 
-    private final TestRestTemplate restTemplate = new TestRestTemplate();
-
-    @Before
-    public void setUp() throws InterruptedException {
-        // Add a delay of 1 second to ensure the server has started before tests are executed
-        Thread.sleep(1000);
-    }
+    @Autowired
+    private TestRestTemplate restTemplate;
 
     @Test
     public void testCreateTransaction() {
@@ -58,19 +54,19 @@ public class TransactionIntegrationTest {
     @Test
     public void testGetTransactionById() {
         // Send HTTP GET request to fetch a transaction by ID
-        long id = 1; // Assuming there's a transaction with ID 1
+        String id = "1"; // Assuming there's a transaction with ID 1
         ResponseEntity<Transaction> response = restTemplate.getForEntity(createURLWithPort("/home/api/transaction/" + id), Transaction.class);
 
         // Verify the response
         Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
         Assert.assertNotNull(response.getBody());
-        Assert.assertEquals(id, Long.parseLong(response.getBody().getId())); // Assuming the fetched transaction has the correct ID
+        Assert.assertEquals(id, response.getBody().getId()); // Assuming the fetched transaction has the correct ID
     }
 
     @Test
     public void testUpdateTransaction() {
         // Send HTTP PUT request to update an existing transaction
-        long id = 1; // Assuming there's a transaction with ID 1
+        String id = "1"; // Assuming there's a transaction with ID 1
         Transaction updatedTransaction = new Transaction();
         updatedTransaction.setAmount(200.0);
         updatedTransaction.setCategory("Updated Category");
@@ -85,7 +81,7 @@ public class TransactionIntegrationTest {
     @Test
     public void testDeleteTransaction() {
         // Send HTTP DELETE request to delete an existing transaction
-        long id = 1; // Assuming there's a transaction with ID 1
+        String id = "1"; // Assuming there's a transaction with ID 1
         restTemplate.delete(createURLWithPort("/home/api/transaction/" + id));
 
         // Assuming no specific verification needed after deleting the transaction
