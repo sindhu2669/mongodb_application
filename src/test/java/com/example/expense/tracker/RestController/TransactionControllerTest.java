@@ -1,6 +1,5 @@
-package com.example.expense.tracker.controller;
+package com.example.expense.tracker.RestController;
 
-import com.example.expense.tracker.controller.TransactionController;
 import com.example.expense.tracker.model.Transaction;
 import com.example.expense.tracker.model.TransactionRequest;
 import com.example.expense.tracker.Service.TransactionService;

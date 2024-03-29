@@ -1,4 +1,4 @@
-package com.example.expense.tracker.controller;
+package com.example.expense.tracker.RestController;
 
 import com.example.expense.tracker.Repository.UserRepository;
 import com.example.expense.tracker.model.User;
@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 

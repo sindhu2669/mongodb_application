@@ -1,4 +1,4 @@
-package com.example.expense.tracker.controller;
+package com.example.expense.tracker.RestController;
 
 import com.example.expense.tracker.Service.TransactionService;
 import com.example.expense.tracker.model.Transaction;
@@ -15,7 +15,7 @@ import java.util.List;
 public class TransactionController {
 
     @Autowired
-    private TransactionService transactionService; // Change to TransactionService
+    private TransactionService transactionService;
 
     // Transaction Management APIs
     @GetMapping
